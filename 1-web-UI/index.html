@@ -14,6 +14,40 @@
     <hr />
     <h1>web UI</h1>
     <hr />
+    <x-counter value="10"></x-counter>
+    <x-counter value="20"></x-counter>
+    <x-counter value="30"></x-counter>
+    <hr />
+
+    <div id="box1" class="alert alert-danger">
+        <input id="inp1" type="number" onchange="changeHandler()" />
+        <hr />
+        <span id="disp" class="badge badge-primary">0</span>
+    </div>
+
+    <script>
+        let inp1 = document.getElementById('inp1');
+        let dispEle = document.getElementById('disp');
+
+        let applnState = {
+            number: 0
+        }
+        setInterval(() => {
+            applnState.number += 1;
+            inp1.value = applnState.number;
+            inp1.dispatchEvent(new Event('change'))
+        }, 2000)
+
+
+        function changeHandler() {
+            if (applnState.number <= 10)
+                dispEle.innerHTML = applnState.number * 100;
+            else
+                dispEle.innerHTML = "boooooom.."
+        }
+    </script>
+
+    <hr />
     <span id="time" class="badge badge-danger">time</span>
     <hr />
     <button class="btn btn-dark">Load top-5 todos</button>
