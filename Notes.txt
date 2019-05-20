@@ -348,4 +348,51 @@ problems/limitations with plain-js ( your-code ) with browser-apis
         5. Aurelia.js
         6. polymer.js        
 
+-----------------------------------------------------------------------
+
+
+how to build front-end apps ?
+
+
+
+        - compile/transpile 
+        - bundling
+        - linting
+        .....
+
+
+
+        tools ==> babel + webpack + eslint
+
+
+
+
+        from facebook ===> create-react-app cli tool
+
+--------------------------------------------------------------------------
+
+
+------------------------------------------------------------
+
+> node -v
+> npm -v
+
+> npm i -g yarn ( optional )
+
+> npm i -g create-react-app 
+
+on workspace
+
+> create-react-app <app-name>
+
+> cd <app-name>
+
+> npm start  | yarn 
+
+------------------------------------------------------------
+
+
+
+
+
 
