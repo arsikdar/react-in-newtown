@@ -8,9 +8,9 @@ class ActionBox extends Component {
     state = {
         totalCount: 0
     }
-    incrementTotalCount() {
+    incrementTotalCount(e) {
         let { totalCount } = this.state;
-        totalCount += 1;
+        totalCount += e.val;
         this.setState({ totalCount })
     }
     render() {
@@ -19,9 +19,9 @@ class ActionBox extends Component {
             <div className="card">
                 <div className="card-header">Action Box : <span className="badge badge-danger">{totalCount}</span></div>
                 <div className="car-body">
-                    <Action value={10} onAction={e => this.incrementTotalCount()} />
-                    <Action value={-10} onAction={e => this.incrementTotalCount()} />
-                    <Action value={100} onAction={e => this.incrementTotalCount()} />
+                    <Action value={10} onAction={e => this.incrementTotalCount(e)} />
+                    <Action value={-10} onAction={e => this.incrementTotalCount(e)} />
+                    <Action value={100} onAction={e => this.incrementTotalCount(e)} />
                     <div style={{ clear: 'both' }}>
                         <Summary value={totalCount} />
                     </div>

@@ -11,9 +11,9 @@ class Action extends Component {
         count += 1;
         this.setState({ count }, () => {
             setTimeout(() => {
-                let { onAction } = this.props;
+                let { onAction, value } = this.props;
                 if (onAction) {
-                    onAction();
+                    onAction({ val: count * value }); // 
                 }
             }, 0)
         })// async
@@ -21,10 +21,14 @@ class Action extends Component {
     render() {
         let { value } = this.props;
         let { count } = this.state;
+        let className = `btn ${value < 10 ? 'bg-danger' : 'bg-info'}`
         return (
             <div className="action">
                 <div className="card card-body">
-                    <button onClick={e => this.incrementCount()} className="btn btn-sm btn-primary">{value}</button>
+                    <button onClick={e => this.incrementCount()} 
+                            className={className}>
+                            {value}
+                    </button>
                     <br /><span className="badge badge-dark">{count}</span>
                 </div>
             </div>
