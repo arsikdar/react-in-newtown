@@ -15,6 +15,9 @@ class App extends Component {
     super();
     console.log("App :: constructor()");
     //console.log(props);  
+    this.state = {
+      message: props.message
+    }
   }
 
   changeMessage(message) {
@@ -39,14 +42,27 @@ class App extends Component {
         <button onClick={e => { this.changeMessage('good morning') }} className="btn btn-primary">GM</button>&nbsp;
         <button onClick={e => { this.changeMessage('good noon') }} className="btn btn-primary">GN</button>&nbsp;
         <button onClick={e => { this.changeMessage('good evening') }} className="btn btn-primary">GE</button>&nbsp;
+        <button onClick={e => { this.changeMessage('') }} className="btn btn-danger">Remove</button>&nbsp;
         <hr />
 
-        <Greeting message={message} />
+        {message ? <Greeting message={message} /> : null}
 
 
       </div>
     );
   }
+
+  componentDidMount() {
+    console.log("App :: componentDidMount()");
+    // setTimeout(() => {
+    //   let message = "Hello React, heraed u r rocking at browser!"
+    //   this.setState({ message })
+    // }, 3000)
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("App :: componentDidUpdate()");
+  }
+
 }
 
 App.defaultProps = {
