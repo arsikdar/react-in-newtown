@@ -5,6 +5,7 @@ import CartView from './components/CartView';
 
 class App extends React.Component {
   state = {
+    isCartOpen: false,
     cart: [],
     products: [
       {
@@ -25,6 +26,12 @@ class App extends React.Component {
     ]
   }
 
+  toggleCart(e) {
+    e.preventDefault();
+    let { isCartOpen } = this.state;
+    this.setState({ isCartOpen: !isCartOpen })
+  }
+
   addToCart(e) {
     let { item, qty } = e;
     let { cart } = this.state;
@@ -33,21 +40,23 @@ class App extends React.Component {
   }
 
   renderProducts() {
-    let { products } = this.state;
-    return products.map((product, idx) => {
-      return (
-        <div key={idx} className="list-group-item">
-          <Product value={product} onBuy={e => this.addToCart(e)} />
-        </div>
-      )
-    })
+    let { products, isCartOpen } = this.state;
+    if (!isCartOpen)
+      return products.map((product, idx) => {
+        return (
+          <div key={idx} className="list-group-item">
+            <Product value={product} onBuy={e => this.addToCart(e)} />
+          </div>
+        )
+      })
   }
   renderCart() {
-    let { cart } = this.state;
-    return <CartView cart={cart} />
+    let { cart, isCartOpen } = this.state;
+    if (isCartOpen)
+      return <CartView cart={cart} />
   }
   render() {
-    let { cart } = this.state;
+    let { cart, isCartOpen } = this.state;
     return (
       <div className="">
         <nav className="navbar navbar-light bg-info">
@@ -60,10 +69,18 @@ class App extends React.Component {
         </div>
         <hr />
         <div className="container">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a onClick={e => this.toggleCart(e)} class="nav-link" href="/">{isCartOpen ? 'Products' : 'Cart'}</a>
+            </li>
+          </ul>
+        </div>
+        <hr />
+        <div className="container">
           {this.renderCart()}
           {this.renderProducts()}
         </div>
-      </div>
+      </div >
     );
   }
 }
