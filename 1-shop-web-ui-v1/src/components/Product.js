@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames'
+import Review from './Review';
 
 
 class Product extends Component {
@@ -14,14 +15,27 @@ class Product extends Component {
         e.preventDefault();
         this.setState({ currentTab: tabIndex })
     }
+    renderReviews() {
+        let { reviews } = this.state;
+        return reviews.map((review, idx) => {
+            return <Review value={review} key={idx} />
+        })
+    }
     renderTabPanel(product) {
         let { currentTab } = this.state;
         switch (currentTab) {
             case 1: return <div>{product.description}</div>
             case 2: return <div>Not Yet</div>
-            case 3: return <div>None Yet</div>
+            case 3: return <div>{this.renderReviews()}</div>
             default: return null;
         }
+    }
+    handleBuy(e) {
+        let { value, onBuy } = this.props;
+        if (onBuy) {
+            onBuy({ item: value, qty: 1 })
+        }
+
     }
     render() {
         // let product=this.props.value;
@@ -37,7 +51,9 @@ class Product extends Component {
                     <div className="col-9 col-sm-9 col-md-9">
                         <h4>{product.name}</h4>
                         <h5>&#8377;{product.price}</h5>
-                        <button className="btn btn-sm btn-primary">buy</button>
+                        <button onClick={e => this.handleBuy(e)} className="btn btn-sm btn-primary">buy</button>
+                        &nbsp;
+                        <input readOnly size="2" />
                         <ul className="nav nav-tabs">
                             <li className="nav-item">
                                 <a onClick={e => this.changeTab(e, 1)} className={classNames('nav-link', { active: currentTab === 1 })} href="/">Description</a>
