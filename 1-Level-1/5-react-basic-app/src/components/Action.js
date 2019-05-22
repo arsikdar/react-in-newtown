@@ -21,7 +21,7 @@ class Action extends Component {
     render() {
         let { value } = this.props;
         let { count } = this.state;
-        let className = `btn ${value < 10 ? 'bg-danger' : 'bg-info'}`
+        let className = `btn btn-sm ${value < 0 ? 'bg-danger' : 'bg-info'}`
         return (
             <div className="action">
                 <div className="card card-body">
