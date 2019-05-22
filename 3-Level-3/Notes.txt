@@ -1,0 +1,61 @@
+
+
+
+UI  ==>  online-shopping
+
+//---------------------------------------------
+step-1 : indentify state/model & r/s b/w them, that represents UI
+//---------------------------------------------
+
+
+ - products
+ - reviews
+ - cart
+ - order
+ - user
+ ......
+
+
+
+//---------------------------------------------
+step-2 : indentify action(s) which cause state change
+//---------------------------------------------
+
+ - LOAD_PRODUCTS
+ - LOAD_REVIEWS
+ - ADD_NEW_REVIEW
+ - BUY
+ - CHECKOUT
+ ...
+
+
+//---------------------------------------------
+step-3 : create action(s) by action creator(s)
+//---------------------------------------------
+
+
+e.g function loadProducts(elec,10){
+    //...............
+    return {type:LOAD_PRODUCTS,[]}
+}
+
+//---------------------------------------------
+step-4 : process action(s) by reducer(s)
+//---------------------------------------------
+
+e.g  function productsReducer(state,action){
+    ///
+    return new-state
+
+}
+
+//---------------------------------------------
+step-5 : combine/compose all reducer(s) as root-reducer
+//---------------------------------------------
+
+
+
+//---------------------------------------------
+step-6 : create store with root-reducer
+//---------------------------------------------
+

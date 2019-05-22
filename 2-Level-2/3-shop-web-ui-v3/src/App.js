@@ -12,8 +12,8 @@ class App extends React.Component {
     cart: {},
   }
   componentDidMount() {
-    let cart = JSON.parse(localStorage.getItem('cart') || {})
-    this.setState({ cart })
+    // let cart = JSON.parse(localStorage.getItem('cart') || {})
+    // this.setState({ cart })
   }
   addToCart(e) {
     let { cart } = this.state;
@@ -28,7 +28,7 @@ class App extends React.Component {
     }
     cart = { ...cart, [id]: itemLine }
     this.setState({ cart }, () => {
-      localStorage.setItem('cart', JSON.stringify(cart))
+      // localStorage.setItem('cart', JSON.stringify(cart))
     })
   }
   renderCart() {
